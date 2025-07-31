@@ -1,0 +1,38 @@
+# Entornos virtuales
+venv/
+env/
+ENV/
+.venv/
+.env/
+
+# Archivos de Python compilados
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Archivos de base de datos SQLite
+*.sqlite3
+
+# Archivos de configuración locales y variables de entorno
+*.env
+.env.*
+
+# Archivos de logs
+*.log
+
+# Archivos de cache de Django
+*.cache
+
+# Archivos de configuración de IDEs
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Archivos estáticos y de media generados
+/staticfiles/
+/media/
