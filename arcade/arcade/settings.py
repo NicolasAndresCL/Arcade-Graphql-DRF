@@ -1,8 +1,15 @@
 from pathlib import Path
+import environ
+import os
+
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-m*l0%+zju-g5oosq+5be=id!)j7u+tu%^&35ew1^x=kq@gwngg'
+# Inicializa las variables de entorno
+env = environ.Env()
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+
+SECRET_KEY = env('SECRET_KEY')
 DEBUG = True
 ALLOWED_HOSTS = []
 
@@ -13,9 +20,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'drf_spectacular',
     'graphene_django',
+    'graphql_playground',
     'usuarios',
-    
+    'inventario',
 ]
 
 MIDDLEWARE = [
@@ -80,4 +89,17 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 GRAPHENE = {
     "SCHEMA": "arcade.schema.schema"
+}
+
+AUTH_USER_MODEL = 'usuarios.Usuario'
+
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Arcade API',
+    'DESCRIPTION': 'Documentación de la API con drf-spectacular',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
 }
