@@ -12,9 +12,6 @@ from graphql_playground.views import GraphQLPlaygroundView
 def home(request):
     return HttpResponse("¡Bienvenido a la API de Django + GraphQL!")
 
-
-
-
 urlpatterns = [
     path('', home),
     path('admin/', admin.site.urls),
