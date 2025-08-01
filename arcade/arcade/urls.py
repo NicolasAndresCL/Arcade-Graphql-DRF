@@ -18,8 +18,8 @@ def home(request):
 urlpatterns = [
     path('', home),
     path('admin/', admin.site.urls),
-    path('api/', include('usuarios.urls')),
-    
+    path('api/', include('usuarios.urls'), name='usuarios'),
+    path('api/', include('inventario.urls'), name='inventario'),
 
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
     path('api/schema/swagger-ui/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),

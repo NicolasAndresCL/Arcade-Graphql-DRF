@@ -26,9 +26,12 @@ class CreateItem(graphene.Mutation):
         rareza = graphene.Int()
         efecto = graphene.String()
         cantidad_disponible = graphene.Int()
+        imagen_url = graphene.String()
+        tiempo_duracion = graphene.Int()
+        nivel_minimo = graphene.Int()
 
-    def mutate(self, info, nombre, tipo="otro", rareza=1, efecto="", cantidad_disponible=0):
-        i = ItemInventario(nombre=nombre, tipo=tipo, rareza=rareza, efecto=efecto, cantidad_disponible=cantidad_disponible)
+    def mutate(self, info, **kwargs):
+        i = ItemInventario(**kwargs)
         i.save()
         return CreateItem(item=i)
 
