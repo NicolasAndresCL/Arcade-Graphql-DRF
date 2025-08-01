@@ -98,8 +98,25 @@ REST_FRAMEWORK = {
 }
 
 SPECTACULAR_SETTINGS = {
-    'TITLE': 'Arcade API',
-    'DESCRIPTION': 'Documentación de la API con drf-spectacular',
-    'VERSION': '1.0.0',
-    'SERVE_INCLUDE_SCHEMA': False,
+    "TITLE": "🎮 Arcade API",
+    "DESCRIPTION": "Documentación visual y profesional de la API arcade.\nIncluye endpoints para usuarios, puntajes y lógica de juego.",
+    "VERSION": "1.0.0",
+    "SERVE_INCLUDE_SCHEMA": False,
+    "SERVE_PUBLIC": True,
+    "COMPONENT_SPLIT_REQUEST": True,
+    "COMPONENT_SPLIT_PATCH": True,
+    "SCHEMA_PATH_PREFIX": "/api/v[0-9]",
+    "SWAGGER_UI_SETTINGS": {
+        "deepLinking": True,
+        "displayOperationId": True,
+        "defaultModelsExpandDepth": 1,
+        "defaultModelRendering": "model",
+        "docExpansion": "none",
+        "persistAuthorization": True,
+        "syntaxHighlight.theme": "obsidian",  # Tema oscuro para el código
+        "tryItOutEnabled": True,              # Permite probar endpoints directamente
+        "filter": True,                       # Agrega barra de búsqueda por nombre de endpoint
+        "showExtensions": True,               # Muestra extensiones personalizadas si las defines
+    },
+
 }
