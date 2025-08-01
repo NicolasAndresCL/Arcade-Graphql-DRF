@@ -6,7 +6,8 @@ from django.contrib.auth import get_user_model
 from .serializers import UsuarioSerializer
 from drf_spectacular.utils import extend_schema_view, extend_schema
 from drf_spectacular.utils import OpenApiExample
-
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+from drf_spectacular.views import SpectacularAPIView
 
 @extend_schema_view(
     post=extend_schema(
@@ -117,3 +118,54 @@ class UsuarioDeleteView(mixins.DestroyModelMixin, GenericAPIView):
     def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)
 
+login_example = OpenApiExample(
+    name="Credenciales de login",
+    value={
+        "username": "jugador_arcade",
+        "password": "1234seguro"
+    },
+    request_only=True,
+    response_only=False
+)
+
+@extend_schema_view(
+    post=extend_schema(
+        operation_id="login_usuario",
+        summary="Autenticación JWT",
+        description="Genera un token de acceso y refresh para el usuario autenticado.",
+        tags=["Autenticación"],
+        examples=[login_example]
+    )
+)
+class CustomTokenObtainPairView(TokenObtainPairView):
+    pass
+
+refresh_example = OpenApiExample(
+    name="Token refresh",
+    value={
+        "refresh": "eyJ0eXAiOiJKV1QiLCJh..."
+    },
+    request_only=True,
+    response_only=False
+)
+
+@extend_schema_view(
+    post=extend_schema(
+        operation_id="refrescar_token",
+        summary="Renovar token de acceso",
+        description="Usa el refresh token para obtener un nuevo token de acceso sin loguearse nuevamente.",
+        tags=["Autenticación"],
+        examples=[refresh_example]
+    )
+)
+class CustomTokenRefreshView(TokenRefreshView):
+    pass
+
+@extend_schema(
+    operation_id="schema_arcade_api",
+    summary="Esquema OpenAPI completo de la API Arcade",
+    description="Este endpoint expone el esquema OpenAPI generado por drf-spectacular, incluyendo todos los endpoints REST y JWT.",
+    tags=["Documentación"]
+)
+class CustomSpectacularAPIView(SpectacularAPIView):
+    pass

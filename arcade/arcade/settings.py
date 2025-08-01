@@ -1,6 +1,7 @@
 from pathlib import Path
 import environ
 import os
+from datetime import timedelta
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -100,14 +101,21 @@ GRAPHENE = {
 AUTH_USER_MODEL = 'usuarios.Usuario'
 
 REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 
 SPECTACULAR_SETTINGS = {
-    "TITLE": "🎮 Arcade API",
-    "DESCRIPTION": "Documentación visual y profesional de la API arcade.\nIncluye endpoints para usuarios, puntajes y lógica de juego.",
+    "TITLE": "🎮 Arcade API · Backend REST & GraphQL",
+    "DESCRIPTION": (
+        "Documentación interactiva y auto-generada para la API arcade. "
+        "Incluye autenticación JWT, lógica escalable para usuarios y puntajes, "
+        "y estructura multiplataforma con presentación profesional vía Swagger/OpenAPI."
+    ),    
     "VERSION": "1.0.0",
-    "SERVE_INCLUDE_SCHEMA": False,
+    "SERVE_INCLUDE_SCHEMA": True,
     "SERVE_PUBLIC": True,
     "COMPONENT_SPLIT_REQUEST": True,
     "COMPONENT_SPLIT_PATCH": True,
@@ -119,10 +127,20 @@ SPECTACULAR_SETTINGS = {
         "defaultModelRendering": "model",
         "docExpansion": "none",
         "persistAuthorization": True,
-        "syntaxHighlight.theme": "obsidian",  # Tema oscuro para el código
-        "tryItOutEnabled": True,              # Permite probar endpoints directamente
-        "filter": True,                       # Agrega barra de búsqueda por nombre de endpoint
-        "showExtensions": True,               # Muestra extensiones personalizadas si las defines
+        "syntaxHighlight.theme": "obsidian",  
+        "tryItOutEnabled": True,              
+        "filter": True,                       
+        "showExtensions": True,               
     },
 
+}
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=30),  
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    'ROTATE_REFRESH_TOKENS': False,
+    'BLACKLIST_AFTER_ROTATION': False,
+    'ALGORITHM': 'HS256',
+    'AUTH_HEADER_TYPES': ('Bearer',),
+    'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
 }

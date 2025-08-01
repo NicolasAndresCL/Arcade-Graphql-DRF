@@ -40,17 +40,17 @@ arcade/
 ```
 
 ## 🚀 Funcionalidades implementadas
-✅ API REST documentada con Swagger (drf-spectacular)
+✅ API REST documentada con Swagger, ejemplos visuales y tags agrupados
 
-✅ Ejemplos visuales en Swagger para usuarios e ítems arcade (OpenApiExample)
+✅ Autenticación JWT (login / refresh) decorada para Swagger UI
 
-✅ GraphQL funcional para queries y mutaciones personalizadas
+✅ Endpoints protegidos con IsAuthenticated para usuarios y arcade
 
-✅ CRUD completo de usuarios e inventario desde DRF y GraphQL
+✅ CRUD completo desde DRF y GraphQL (mutaciones y queries)
 
-✅ Modelo de inventario arcade con campos avanzados: rareza, efecto, visualización, nivel mínimo, estado en juego
+✅ Lógica arcade avanzada: inventario con rareza, duración, activación
 
-✅ Configuración modular y extensible, lista para producción
+✅ Esquema completo OpenAPI expuesto en /schema/, listo para exporta
 
 ## 🎯 Ejemplos visuales en Swagger UI
 Swagger UI muestra payloads prellenados para facilitar pruebas y presentación profesional. Algunos ejemplos:

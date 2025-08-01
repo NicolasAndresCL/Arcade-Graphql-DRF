@@ -9,6 +9,7 @@ from graphene_django.views import GraphQLView
 from graphql_playground.views import GraphQLPlaygroundView
 
 
+
 def home(request):
     return HttpResponse("¡Bienvenido a la API de Django + GraphQL!")
 
@@ -18,10 +19,11 @@ urlpatterns = [
     path('api/', include('usuarios.urls'), name='usuarios'),
     path('api/', include('inventario.urls'), name='inventario'),
 
-    path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
     path('api/schema/swagger-ui/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
     path('api/schema/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
 
     path('graphql/', GraphQLView.as_view(graphiql=True)), 
     path('playground/', GraphQLPlaygroundView.as_view(endpoint="/graphql/")),
+
+
 ]
