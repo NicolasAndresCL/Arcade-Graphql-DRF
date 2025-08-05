@@ -7,6 +7,10 @@ from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView, Sp
 from django.views.decorators.csrf import csrf_exempt
 from graphene_django.views import GraphQLView
 from graphql_playground.views import GraphQLPlaygroundView
+from .views import custom_swagger_ui_view
+from django.conf.urls.static import static
+from django.conf import settings
+
 
 
 
@@ -16,14 +20,21 @@ def home(request):
 urlpatterns = [
     path('', home),
     path('admin/', admin.site.urls),
+
     path('api/', include('usuarios.urls'), name='usuarios'),
     path('api/', include('inventario.urls'), name='inventario'),
 
-    path('api/schema/swagger-ui/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
+    path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
     path('api/schema/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
+    path('api/schema/swagger-ui/', custom_swagger_ui_view, name='swagger-ui'),
 
     path('graphql/', GraphQLView.as_view(graphiql=True)), 
     path('playground/', GraphQLPlaygroundView.as_view(endpoint="/graphql/")),
 
 
+
 ]
+
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

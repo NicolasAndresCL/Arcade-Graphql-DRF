@@ -1,0 +1,108 @@
+body {
+    background-color: #1e1e2f;
+    font-family: 'Press Start 2P', monospace;
+    color: #fff;
+}
+
+.topbar {
+    background-color: #141414 !important;
+}
+
+.topbar-wrapper img {
+    content: url('/static/swagger/logo.png');
+    max-height: 40px;
+}
+
+.swagger-ui .info h2.title {
+    color: #42f5ef;
+}
+
+.swagger-ui .scheme-container {
+    background-color: #2c2c3e;
+}
+
+.auth-wrapper {
+    background-color: #3ddc91;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Color del botón */
+.swagger-ui .btn.authorize {
+    background-color: #3ddc91 !important;
+    color: #000 !important;
+    border: none;
+}
+
+/* Al pasar el mouse */
+.swagger-ui .btn.authorize:hover {
+    background-color: #2cb57f !important;
+}
+
+.swagger-ui .info p,
+.swagger-ui .opblock-summary-description,
+.swagger-ui .opblock-description-wrapper,
+.swagger-ui .opblock-tag,
+.swagger-ui .model-title {
+    color: #e0e0e0 !important;
+}
+
+.swagger-ui .opblock-section-header {
+    background-color: #2a2a3b;
+    color: #e0e0e0;
+}
+
+.opblock-section-header {
+   background-color: #2a2a3b;
+ 
+}
+
+.swagger-ui .parameter__name,
+.swagger-ui .parameter__type,
+.swagger-ui .parameter__in {
+    color: #ffffff !important;
+}
+
+/* Aclarar color de rutas (paths como /api/items/) */
+.swagger-ui .opblock-summary-path {
+    color: #ffffff !important;
+    font-weight: bold;
+}
+
+/* Descripción del endpoint (como "Listar ítems de inventario") */
+.swagger-ui .opblock-summary-description {
+    color: #cfd8dc !important;
+}
+
+/* Instrucciones dentro del bloque expandido */
+.swagger-ui .opblock-description-wrapper,
+.swagger-ui .opblock-external-docs-wrapper p,
+.swagger-ui .opblock-section-header h4,
+.swagger-ui .parameter__name,
+.swagger-ui .response-col_description,
+.swagger-ui .parameter__type,
+.swagger-ui .model-title,
+.swagger-ui .response-col_status,
+.swagger-ui .response-col_links {
+    color: #e0e0e0 !important;
+}
+
+/* Fondo detrás del botón Authorize */
+.swagger-ui .topbar + .information-container.wrapper {
+    background-color: #1e1e2f !important;
+    border-bottom: 1px solid #e0e0e0 ;
+    padding-bottom: 15px;
+}
+.scheme-container {
+    background-color: #1e1e2f !important;
+
+}
+
+.swagger-ui svg {
+  fill: #1e1e2f !important;     /* Color del ícono */
+  stroke: #301f1f65 !important;   /* Borde del ícono (si aplica) */
+}
+
+.p {
+    color: #e0e0e0
+}

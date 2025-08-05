@@ -8,6 +8,7 @@ django-graphql-playground==1.0
 djangorestframework==3.16.0
 djangorestframework_simplejwt==5.5.1
 drf-spectacular==0.28.0
+drf-spectacular-sidecar==2025.8.1
 drf-yasg==1.21.10
 graphene==3.4.3
 graphene-django==3.2.3

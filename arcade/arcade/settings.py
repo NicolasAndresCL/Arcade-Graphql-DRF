@@ -6,7 +6,6 @@ from datetime import timedelta
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Inicializa las variables de entorno
 env = environ.Env()
 environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
@@ -23,6 +22,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'drf_yasg',
     'drf_spectacular',
+    'drf_spectacular_sidecar',
     'rest_framework',
     'graphene_django',
     'graphql_playground',
@@ -45,10 +45,11 @@ ROOT_URLCONF = 'arcade.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')], 
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
@@ -86,7 +87,12 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -115,7 +121,7 @@ SPECTACULAR_SETTINGS = {
         "y estructura multiplataforma con presentación profesional vía Swagger/OpenAPI."
     ),    
     "VERSION": "1.0.0",
-    "SERVE_INCLUDE_SCHEMA": True,
+    "SERVE_INCLUDE_SCHEMA": False,
     "SERVE_PUBLIC": True,
     "COMPONENT_SPLIT_REQUEST": True,
     "COMPONENT_SPLIT_PATCH": True,
@@ -130,7 +136,8 @@ SPECTACULAR_SETTINGS = {
         "syntaxHighlight.theme": "obsidian",  
         "tryItOutEnabled": True,              
         "filter": True,                       
-        "showExtensions": True,               
+        "showExtensions": True,
+        
     },
 
 }

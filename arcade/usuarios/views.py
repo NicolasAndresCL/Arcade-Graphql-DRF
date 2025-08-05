@@ -7,7 +7,6 @@ from .serializers import UsuarioSerializer
 from drf_spectacular.utils import extend_schema_view, extend_schema
 from drf_spectacular.utils import OpenApiExample
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
-from drf_spectacular.views import SpectacularAPIView
 
 @extend_schema_view(
     post=extend_schema(
@@ -161,11 +160,3 @@ refresh_example = OpenApiExample(
 class CustomTokenRefreshView(TokenRefreshView):
     pass
 
-@extend_schema(
-    operation_id="schema_arcade_api",
-    summary="Esquema OpenAPI completo de la API Arcade",
-    description="Este endpoint expone el esquema OpenAPI generado por drf-spectacular, incluyendo todos los endpoints REST y JWT.",
-    tags=["Documentación"]
-)
-class CustomSpectacularAPIView(SpectacularAPIView):
-    pass
